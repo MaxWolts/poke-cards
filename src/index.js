@@ -1,4 +1,5 @@
 async function pokemonCards (num , $body){
+    console.log(`el numero es: ${num}`)
     async function call (num){
         aux = parseInt(num)
         if (aux < 650 || !aux){
@@ -8,7 +9,12 @@ async function pokemonCards (num , $body){
             try {
                 const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${num}`)
                 const data = await response.json()
-                return data;
+                console.log(data.order)
+                if(data.id < 650){
+                    return data;
+                }else{
+                    return 0
+                }
             } catch (error) {
                 return 0
             }
