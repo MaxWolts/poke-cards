@@ -1,5 +1,4 @@
 async function pokemonCards (num , $body){
-    console.log(`el numero es: ${num}`)
     async function call (num){
         aux = parseInt(num)
         if (aux < 650 || !aux){
@@ -9,7 +8,7 @@ async function pokemonCards (num , $body){
             try {
                 const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${num}`)
                 const data = await response.json()
-                console.log(data.order)
+                //evita pokemon fuera del rango
                 if(data.id < 650){
                     return data;
                 }else{
@@ -61,7 +60,6 @@ async function pokemonCards (num , $body){
         html.body.innerHTML = HTMLString
         return html.body.children[0]
     }
-
     function featuringTemplateError() {
         let aux = '<h4>Type: NaN </h4>' + `<p class="type: unknown"></p>`
         return (
