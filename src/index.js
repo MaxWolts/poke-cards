@@ -164,32 +164,47 @@ function loadGif($card){
 //carta buscada
 let $card = document.querySelector("body > section.card-search")
 let $form = document.querySelector("body > div > form")
+let $input = document.querySelector("body > div > form > input[type=text]")
+let $button = document.querySelector("body > div > form > button.button-search")
+let $buttonClear = document.querySelector("body > div > form > button.button-clear")
+
 $form.addEventListener('submit', async (event) => {
     const data = new FormData($form)
     event.preventDefault()
     let aux = $card.childElementCount 
-    //img load
-    loadGif($card)
-    //eliminar cartas
-    if ( aux >= 1){
-        $card.children[0].remove()
-    }
-    $form.style.display = 'none'
-    if ($card.childElementCount <= 1){
-        await pokemonCards(data.get('name'), $card)
-        //shiny
-        setTimeout( () => {$card.children[0].children[1].addEventListener('click', ()=>{
-            let $childCard = $card.children[0].children[3]
-            let $container1 = $childCard.children[0]
-            let $container2 = $childCard.children[1]
-            changeDisplay($container1, $container2)
-        }   
-        )} ,0)
-        //hacer visible el boton
-        setTimeout(() => {
-            $card.children[0].children[1].style.display = "block"
-            $form.style.display = 'block'
-        },0)
+    if(data.get('name') !== ''){
+        //img load
+        loadGif($card)
+        //eliminar cartas
+        if ( aux >= 1){
+            $card.children[0].remove()
+        }
+
+        $input.style.display = "none"
+        $button.style.display = "none"
+        $buttonClear.style.display = "none"
+        $form.style.border= "none"
+
+        if ($card.childElementCount <= 1){
+            await pokemonCards(data.get('name'), $card)
+            //shiny
+            setTimeout( () => {$card.children[0].children[1].addEventListener('click', ()=>{
+                let $childCard = $card.children[0].children[3]
+                let $container1 = $childCard.children[0]
+                let $container2 = $childCard.children[1]
+                changeDisplay($container1, $container2)
+            }   
+            )} ,0)
+            //hacer visible el boton
+            setTimeout(() => {
+                $card.children[0].children[1].style.display = "block"
+                // $form.style.display = 'block'
+                $input.style.display = "block"
+                $button.style.display = "block"
+                $buttonClear.style.display = "block"
+                $form.style.border = "2px solid var(--cBlack)"
+            },0)
+        }
     }
     //up al cargar
     window.scroll({

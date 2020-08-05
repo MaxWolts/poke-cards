@@ -81,19 +81,51 @@ footer p {
     margin: 2% 0;
 }
 .search form {
-    width: 100%;
-    text-align: center;
+    border: 2px solid var(--cBlack);
+    width: 51%;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 80% 10% 10%;
+    border-radius: 12px;
+    margin: auto;
+
+    background-color: var(--cWhite);
+}
+.button-search {
+    outline: none;
+    background-color:var(--cBlack);
+    text-decoration: none;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-style: none;
+    cursor: pointer;
+    font-size: 25px;
+}
+.button-clear {
+     outline: none;
+    background-color: var(--cWhite);
+    text-decoration: none;
+    border-style: none;
+    cursor: pointer;
+    font-size: 25px;
+}
+.button-clear:active {
+    background-color: var(--cwater);
+}
+.button-search:active{
+    background-color: var(--cwater);
+    border: 2px solid var(--cBlack);
 }
 .search input {
-    border: 2px solid var(--cBlack);
-    width: 50%;
     height: 3rem;
+    border-radius: 12px;
     padding: 3px;
     padding-left: 10px;
-    border-radius: 10px;
     outline-style: none;
+    background-color: var(--cWhite);
+    border-style: none;
 }
-.search input:focus {
+.search form:focus-within {
     box-shadow: 0 0 3px 1px #aba5a5;
 }
 .search p {
@@ -256,6 +288,9 @@ footer p {
 }
 /*Media querys*/
 @media screen and (max-width: 768px){
+    .search form {
+        width: 80%;
+    }
     .cards-example {
         grid-template-rows: repeat(3, 1fr);
         grid-template-columns: repeat(2, 1fr);
@@ -266,11 +301,11 @@ footer p {
     .search p {
         width: 80%;
     }
-    .search input {
-        width: 70%;
-    }
 }
-@media screen and (max-width: 480px){
+@media screen and (max-width: 425px){
+    .search form {
+        grid-template-columns: 70% 15% 15%;
+    }
     .card-search .card {
         margin-top: 0px;
     }
@@ -286,13 +321,14 @@ footer p {
         font-size: 40px;
         text-decoration: none;
     }
-}
-@media screen and (max-width: 320px){
     header p{
         display: none;
     }
-    .search p {
-        margin: 0 auto 15px;
+}
+@media screen and (max-width: 320px){
+    .search form {
+        width: 90%;
+        grid-template-columns: 60% 20% 20%;
     }
 }
 /* Animation*/
@@ -313,3 +349,4 @@ footer p {
     width: 144px;
     vertical-align: middle;
 }
+
